@@ -173,6 +173,9 @@
     @media (max-width: 768px) {
       header h1 { font-size: 36px; }
       header p { font-size: 18px; }
+      .hero-logo {
+        width: 260px;
+      }
       nav { flex-direction: column; align-items: center; gap: 10px; padding: 10px; }
       nav div:last-child {
         display: flex;
@@ -183,12 +186,47 @@
         margin-top: 10px;
       }
     }
+
+    .nav-logo img {
+      height: 40px;   /* safe default */
+      width: auto;
+      display: block;
+    }
+    
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-logo {
+      width: min(420px, 80%);
+      margin: 0 auto 20px;
+      display: block;
+      filter: drop-shadow(0 6px 25px rgba(0,0,0,0.85));
+    }
+
+    .phone-video-container {
+      max-width: 360px;        /* phone width */
+      margin: auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      background: black;
+    }
+
+    .phone-video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
 
   <nav>
-    <div><strong>ProdigEye</strong></div>
+    <div class="nav-logo">
+      <img src="prodigeye.png" alt="ProdigEye Logo" />
+    </div>
     <div>
       <a href="#about">About</a>
       <a href="#tech">Technology</a>
@@ -202,15 +240,22 @@
       <source src="https://cdn.coverr.co/videos/coverr-doctor-checking-a-patients-eye-8366/1080p.mp4" type="video/mp4">
     </video>
     <div class="particles"></div>
-    <h1>ProdigEye</h1>
+    <img
+      src="prodigeye.png"
+      alt="ProdigEye"
+      class="hero-logo"
+    />
     <p>AI-Powered Smartphone Eye Diagnostics</p>
   </header>
 
   <section id="video">
     <h2>Demo Video</h2>
     <div class="card reveal-on-scroll" style="text-align:center;">
-      <div style="width:100%; max-width:700px; margin:auto; aspect-ratio:16/9; background:#dce6ff; display:flex; align-items:center; justify-content:center; border-radius:12px; color:#0b4cc9; font-size:22px;">
-        Video Placeholder
+      <div class="phone-video-container">
+        <video controls playsinline>
+          <source src="demo-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </section>
@@ -232,20 +277,35 @@
   <section id="team">
     <h2>Our Team</h2>
     <div class="team-grid">
-      <div class="team-member reveal-on-scroll">
-        <img src="team/ron-ritter.png" alt="Ron Ritter" />
+    <div class="team-member reveal-on-scroll">
+      <img src="team/ron-ritter.png" alt="Ron Ritter" />
         <h3>Ron Ritter</h3>
-        <p>Co-Founder & CEO</p>
+        <p><strong>Co-Founder & CEO</strong></p>
+        <p class="team-bio">
+          Ron is responsible for the company's core technology, from model
+          architecture to technical strategy. He is a proven AI leader and
+          entrepreneur with over 20 years of experience. His career is highlighted
+          by founding and selling his own AI company, Algotrace, to a major
+          international high-tech firm. Ron holds a Master’s degree in Statistics
+          from the University of Haifa.
+        </p>
       </div>
+
       <div class="team-member reveal-on-scroll">
         <img src="team/moshe-fisher2.png" alt="Dr. Moshe Fisher" />
         <h3>Dr. Moshe Fisher</h3>
-        <p>Co-Founder & CEO</p>
-      </div>
-      <div class="team-member reveal-on-scroll">
-        <img src="team/awi-leuchter2.png" alt="Awi Leuchter" />
-        <h3>Awi Leuchter</h3>
-        <p>Co-Founder & CMO</p>
+        <p><strong>Co-Founder & Chief Medical Officer</strong></p>
+        <p class="team-bio">
+          Dr. Fisher is an American board-certified Ophthalmologist specializing in
+          Cornea & External Disease with 27 years of clinical experience. He earned
+          his medical degree from Albert Einstein College of Medicine in New York,
+          completed his Ophthalmology residency at Long Island Jewish Medical
+          Center, and pursued an advanced fellowship in Cornea and External Disease
+          at Mount Sinai–NYU. He previously served as Assistant Director of the
+          Cornea Service and Assistant Clinical Professor at the University of
+          Medicine & Dentistry of New Jersey. He is currently the Director of the
+          Modiin Eye Center in Modiin, Israel.
+        </p>
       </div>
     </div>
   </section>
