@@ -48,7 +48,8 @@
     header {
       position: relative;
       height: 80vh;
-      color: white;
+      color: #000000;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.35);
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -122,6 +123,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 30px;
+      justify-content: center;
     }
     .team-member {
       background: white;
@@ -185,10 +187,13 @@
         gap: 8px;
         margin-top: 10px;
       }
+        .nav-logo img {
+          height: 38px;
+        }
     }
 
     .nav-logo img {
-      height: 40px;   /* safe default */
+      height: 52px;   /* safe default */
       width: auto;
       display: block;
     }
@@ -263,14 +268,14 @@
   <section id="about">
     <h2>About ProdigEye</h2>
     <div class="card reveal-on-scroll">
-      <p>ProdigEye transforms any smartphone into a medical diagnostic tool for anterior eye diseases. No extra hardware. No delays. Clinical accuracy anywhere.</p>
+      <p>ProdigEye is a medical-grade, AI-powered Diagnostic platform designed to support clinicians in accurately identifying anterior segment eye diseases using only a standard smartphone camera. Built together by an AI expert and an ophthalmologist, ProdigEye aims to improve ophthalmic care and reduce delay in diagnosis in settings where specialist access and ocular equipment are limited.</p>
     </div>
   </section>
 
   <section id="tech">
     <h2>Our Technology</h2>
     <div class="card reveal-on-scroll">
-      <p>Using advanced CNNs, multimodal fusion, and real-world variability training, ProdigEye delivers robust and specialist-level diagnostics instantly.</p>
+      <p>ProdigEye delivers specialist-level eye diagnostics directly from a smartphone camera. Using AI-powered analysis, the platform provides accurate, early diagnosis at the point of care, reducing non-urgent emergency room referrals and lowering diagnostic uncertainty. By improving clinical confidence, ProdigEye unlocks significant efficiency and cost savings while enhancing patient health and outcomes.</p>
     </div>
   </section>
 
