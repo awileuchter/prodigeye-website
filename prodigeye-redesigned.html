@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdigEye</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0b4cc9;
+      --primary-dark: #093a9b;
+      --primary-light: #4d7ce8;
+      --accent: #00d9ff;
+      --text-dark: #0a1628;
+      --text-medium: #4a5568;
+      --text-light: #718096;
+      --bg-white: #ffffff;
+      --bg-light: #f8fafc;
+      --bg-gradient: linear-gradient(135deg, #eef5ff 0%, #f8fafc 100%);
+      --shadow-sm: 0 2px 8px rgba(11, 76, 201, 0.08);
+      --shadow-md: 0 4px 16px rgba(11, 76, 201, 0.12);
+      --shadow-lg: 0 12px 40px rgba(11, 76, 201, 0.16);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background: var(--bg-gradient);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      z-index: 1000;
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(11, 76, 201, 0.08);
+    }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .nav-logo img {
+      height: 70px;
+      width: auto;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .nav-logo:hover img {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 4px 12px rgba(11, 76, 201, 0.3));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::before {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Hero Section */
+    header {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0b4cc9 0%, #093a9b 100%);
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.25;
+      filter: brightness(0.5) contrast(1.2);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(11, 76, 201, 0.92) 0%, rgba(9, 58, 155, 0.88) 100%);
+      z-index: 2;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      animation: floatUp 8s ease-in-out infinite;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-120vh) translateX(30px) scale(0.3);
+        opacity: 0;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-logo {
+      width: min(420px, 80%);
+      margin: 0 auto 30px;
+      display: block;
+      filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.4));
+      animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    header p {
+      font-size: clamp(20px, 3vw, 28px);
+      color: rgba(255, 255, 255, 0.98);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards;
+      line-height: 1.5;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      animation: bounce 2.5s infinite;
+      cursor: pointer;
+    }
+
+    .scroll-indicator::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 50px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .scroll-indicator::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 3px;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollWheel 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    @keyframes scrollWheel {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      margin-bottom: 60px;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-white);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 76, 201, 0.08);
+      transition: var(--transition);
+      transform: translateY(40px);
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card.reveal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card p {
+      color: var(--text-medium);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Phone Video Container */
+    .phone-video-container {
+      max-width: 360px;
+      margin: auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(11, 76, 201, 0.25);
+      background: #000;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .phone-video-container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 70px rgba(11, 76, 201, 0.35);
+    }
+
+    .phone-video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .team-member {
+      background: var(--bg-white);
+      border-radius: 24px;
+      padding: 40px 35px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 76, 201, 0.08);
+      transition: var(--transition);
+      transform: translateY(40px);
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-member.reveal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .team-member:hover::before {
+      transform: scaleX(1);
+    }
+
+    .team-member img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 24px;
+      border: 4px solid var(--bg-light);
+      box-shadow: 0 8px 24px rgba(11, 76, 201, 0.15);
+      transition: var(--transition);
+    }
+
+    .team-member:hover img {
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(11, 76, 201, 0.25);
+    }
+
+    .team-member h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .team-member p {
+      color: var(--text-medium);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .team-member p strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .team-bio {
+      margin-top: 16px;
+      text-align: left;
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+      color: var(--text-light) !important;
+    }
+
+    /* Contact Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 600px;
+      margin: 40px auto 0;
+      background: var(--bg-white);
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 76, 201, 0.08);
+    }
+
+    input,
+    textarea {
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 2px solid rgba(11, 76, 201, 0.12);
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: var(--transition);
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--text-light);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--bg-white);
+      box-shadow: 0 0 0 4px rgba(11, 76, 201, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    button {
+      padding: 18px 36px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 8px 24px rgba(11, 76, 201, 0.3);
+      letter-spacing: 0.02em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(11, 76, 201, 0.4);
+    }
+
+    button:active {
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      margin-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+
+    footer p {
+      font-size: 15px;
+      opacity: 0.95;
+      letter-spacing: 0.02em;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 12px 24px;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .nav-logo img {
+        height: 50px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-links a {
+        font-size: 16px;
+      }
+
+      header {
+        min-height: 75vh;
+        padding: 100px 20px 60px;
+      }
+
+      .hero-logo {
+        width: min(300px, 85%);
+        margin-bottom: 24px;
+      }
+
+      section {
+        padding: 70px 24px;
+      }
+
+      h2 {
+        margin-bottom: 40px;
+      }
+
+      .card {
+        padding: 32px 24px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      form {
+        padding: 36px 24px;
+      }
+
+      footer {
+        padding: 48px 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-logo {
+        width: min(260px, 90%);
+      }
+
+      .phone-video-container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="prodigeye.png" alt="ProdigEye Logo" />
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#tech">Technology</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <video autoplay muted loop playsinline>
+      <source src="https://cdn.coverr.co/videos/coverr-doctor-checking-a-patients-eye-8366/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <img src="prodigeye.png" alt="ProdigEye" class="hero-logo" />
+      <p>AI-Powered Smartphone Eye Diagnostics</p>
+    </div>
+    <div class="scroll-indicator"></div>
+  </header>
+
+  <section id="video">
+    <h2>Demo Video</h2>
+    <div class="card reveal-on-scroll" style="text-align:center;">
+      <div class="phone-video-container">
+        <video controls playsinline>
+          <source src="demo-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About ProdigEye</h2>
+    <div class="card reveal-on-scroll">
+      <p>ProdigEye is a medical-grade AI diagnostic platform that enables non-specialist clinicians to accurately identify anterior segment eye diseases using only a standard smartphone camera. Designed for primary care, pediatrics, and emergency settings, ProdigEye delivers specialist-level diagnostic insight at the point of care, helping reduce misdiagnosis, unnecessary referrals, and delays in treatment where access to ophthalmologists and ocular equipment is limited.</p>
+    </div>
+  </section>
+
+  <section id="tech">
+    <h2>Our Technology</h2>
+    <div class="card reveal-on-scroll">
+      <p>ProdigEye transforms a smartphone into a clinical eye diagnostic tool. Using AI-powered image analysis, the platform supports early and accurate identification of anterior segment eye conditions directly at the point of care. By reducing diagnostic uncertainty and unnecessary emergency room referrals, ProdigEye improves clinical confidence, lowers healthcare costs, and ensures patients receive timely, appropriate care, without requiring additional hardware or specialist training.</p>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member reveal-on-scroll">
+        <img src="team/ron-ritter.png" alt="Ron Ritter" />
+        <h3>Ron Ritter</h3>
+        <p><strong>Co-Founder & CEO</strong></p>
+        <p class="team-bio">
+          Ron is responsible for the company's core technology, from model
+          architecture to technical strategy. He is a proven AI leader and
+          entrepreneur with over 20 years of experience. His career is highlighted
+          by founding and selling his own AI company, Algotrace, to a major
+          international high-tech firm. Ron holds a Master's degree in Statistics
+          from the University of Haifa.
+        </p>
+      </div>
+
+      <div class="team-member reveal-on-scroll">
+        <img src="team/moshe-fisher2.png" alt="Dr. Moshe Fisher" />
+        <h3>Dr. Moshe Fisher</h3>
+        <p><strong>Co-Founder & Chief Medical Officer</strong></p>
+        <p class="team-bio">
+          Dr. Fisher is an American board-certified Ophthalmologist specializing in
+          Cornea & External Disease with 27 years of clinical experience. He earned
+          his medical degree from Albert Einstein College of Medicine in New York,
+          completed his Ophthalmology residency at Long Island Jewish Medical
+          Center, and pursued an advanced fellowship in Cornea and External Disease
+          at Mount Sinai–NYU. He previously served as Assistant Director of the
+          Cornea Service and Assistant Clinical Professor at the University of
+          Medicine & Dentistry of New Jersey. He is currently the Director of the
+          Modiin Eye Center in Modiin, Israel.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <textarea rows="5" placeholder="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 ProdigEye — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Reveal elements on scroll
+    const revealEls = document.querySelectorAll('.reveal-on-scroll');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    
+    revealEls.forEach(el => observer.observe(el));
+
+    // Particle generation
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 35; i++) {
+      let p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDuration = (6 + Math.random() * 6) + 's';
+      p.style.animationDelay = Math.random() * 4 + 's';
+      particleContainer.appendChild(p);
+    }
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll indicator click
+    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+      document.querySelector('#video').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  </script>
+
+</body>
+</html>
