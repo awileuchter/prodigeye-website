@@ -630,13 +630,33 @@
         transform: scale(1);
       }
     }
+    
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
       .nav-container {
         padding: 12px 24px;
-        flex-direction: column;
-        gap: 16px;
+        position: relative;
       }
 
       .nav-logo img {
@@ -644,14 +664,34 @@
       }
 
       .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
         flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        text-align: center;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        gap: 0;
+      }
+
+      .nav-links.active {
+        max-height: 300px;
+        opacity: 1;
       }
 
       .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         font-size: 16px;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
       }
 
       header {
@@ -710,11 +750,16 @@
           <img src="prodigeye.png" alt="ProdigEye Logo" />
         </a>
       </div>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#tech">Technology</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact Us</a>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#tech" onclick="closeMenu()">Technology</a>
+        <a href="#team" onclick="closeMenu()">Team</a>
+        <a href="#contact" onclick="closeMenu()">Contact Us</a>
       </div>
     </div>
   </nav>
@@ -864,6 +909,15 @@
         block: 'start'
       });
     });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('active');
+    }
   </script>
 
 </body>
