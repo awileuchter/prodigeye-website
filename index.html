@@ -1,63 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProdigEye – Under Construction</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProdigEye - Under Construction</title>
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
     }
-
+    
     body {
-      background: linear-gradient(135deg, #0b4cc9, #1a1f3c);
-      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    
+    .container {
+      background: white;
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       text-align: center;
-      color: white;
+      max-width: 500px;
+      width: 90%;
     }
-
-    .wrapper {
-      animation: fadeIn 1.2s ease;
-      padding: 20px;
-    }
-
-    img {
-      width: 180px;
+    
+    .logo {
+      width: 200px;
       height: auto;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+      margin-bottom: 5px;
     }
-
+    
     h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      color: #0891b2;
+      margin-bottom: 10px;
+      font-size: 32px;
     }
-
+    
     p {
-      font-size: 22px;
-      opacity: 0.9;
+      color: #64748b;
+      margin-bottom: 30px;
+      font-size: 16px;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #0891b2;
+      box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+    }
+    
+    button {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, #0891b2, #0e7490);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(8, 145, 178, 0.3);
+    }
+    
+    .error {
+      color: #ef4444;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
     }
   </style>
 </head>
-
 <body>
-  <div class="wrapper">
-    <img src="prodigeye.png" alt="ProdigEye Logo">
-    <h1>UNDER CONSTRUCTION</h1>
-    <p>Our new website is on the way.</p>
+  <div class="container">
+    <img src="prodigeye.png" alt="ProdigEye Logo" class="logo">
+    <h1>🚧 Under Construction</h1>
+    <p>This site is currently in development. Please enter the password to preview.</p>
+    
+    <input type="password" id="password" placeholder="Enter password" onkeypress="if(event.key==='Enter') checkPassword()">
+    <button onclick="checkPassword()">Access Site</button>
+    <p class="error" id="error">Incorrect password. Please try again.</p>
   </div>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById('password').value;
+      const correctPassword = 'awiawiawi';
+      
+      if (password === correctPassword) {
+        window.location.href = 'main.html';
+      } else {
+        document.getElementById('error').style.display = 'block';
+        document.getElementById('password').value = '';
+      }
+    }
+  </script>
 </body>
 </html>
