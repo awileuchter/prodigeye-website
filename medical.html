@@ -2,18 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="prodigeye.png" />
+  <link rel="shortcut icon" href="prodigeye.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProdigEye – Medical</title>
+  <title>ProdigEye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --primary: #0b4cc9;
       --primary-dark: #093a9b;
+      --primary-light: #4d7ce8;
       --accent: #00d9ff;
       --text-dark: #0a1628;
       --text-medium: #4a5568;
@@ -21,13 +28,11 @@
       --bg-white: #ffffff;
       --bg-light: #f8fafc;
       --bg-gradient: linear-gradient(135deg, #eef5ff 0%, #f8fafc 100%);
-      --shadow-sm: 0 2px 8px rgba(11,76,201,0.08);
-      --shadow-md: 0 4px 16px rgba(11,76,201,0.12);
-      --shadow-lg: 0 12px 40px rgba(11,76,201,0.16);
-      --transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      --shadow-sm: 0 2px 8px rgba(11, 76, 201, 0.08);
+      --shadow-md: 0 4px 16px rgba(11, 76, 201, 0.12);
+      --shadow-lg: 0 12px 40px rgba(11, 76, 201, 0.16);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -36,202 +41,760 @@
       line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Navigation */
     nav {
-      position: fixed; top: 0; left: 0; width: 100%;
-      background: rgba(255,255,255,0.88);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      z-index: 1000; transition: var(--transition);
-      border-bottom: 1px solid rgba(11,76,201,0.08);
+      z-index: 1000;
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(11, 76, 201, 0.08);
     }
+
+    nav.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-sm);
+    }
+
     .nav-container {
-      max-width: 1400px; margin: 0 auto;
+      max-width: 1400px;
+      margin: 0 auto;
       padding: 18px 50px;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .nav-logo img { height: 85px; width: auto; display: block; transition: var(--transition); }
-    .nav-logo:hover img { transform: translateY(-2px); filter: drop-shadow(0 4px 12px rgba(11,76,201,0.3)); }
-    .nav-links { display: flex; gap: 40px; align-items: center; }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .nav-logo img {
+      height: 85px;
+      width: auto;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .nav-logo:hover img {
+      transform: translateY(-2px);
+      filter: drop-shadow(0 4px 12px rgba(11, 76, 201, 0.3));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
     .nav-links a {
-      text-decoration: none; color: var(--text-dark);
-      font-weight: 600; font-size: 15px; letter-spacing: -0.01em;
-      position: relative; transition: var(--transition);
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      position: relative;
+      transition: var(--transition);
     }
+
     .nav-links a::before {
-      content: ''; position: absolute; bottom: -6px; left: 50%;
-      transform: translateX(-50%) scaleX(0); width: 100%; height: 2px;
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 100%;
+      height: 2px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 2px; transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .nav-links a:hover { color: var(--primary); }
-    .nav-links a:hover::before, .nav-links a.active::before { transform: translateX(-50%) scaleX(1); }
-    .nav-links a.active { color: var(--primary); }
 
-    .page-hero {
-      margin-top: 121px;
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::before {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Hero Section */
+    header {
+      position: relative;
+      min-height: 42vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 90px 20px 40px;
+      overflow: hidden;
       background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%);
-      padding: 80px 40px 70px; text-align: center;
-      position: relative; overflow: hidden;
     }
-    .page-hero::after {
-      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,217,255,0.5), transparent);
-    }
-    .page-hero .eyebrow {
-      font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--primary); font-weight: 600; margin-bottom: 16px; display: block;
-    }
-    .page-hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; color: #0a1628;
-      letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 16px;
-    }
-    .page-hero p { font-size: 1.1rem; color: #3a5a80; max-width: 560px; margin: 0 auto; }
-    .hero-bar { width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; margin: 20px auto 0; }
 
-    main { max-width: 1000px; margin: 0 auto; padding: 60px 40px 100px; }
-
-    .card {
-      background: var(--bg-white); border-radius: 24px; padding: 48px;
-      margin-bottom: 32px; box-shadow: var(--shadow-md);
-      border: 1px solid rgba(11,76,201,0.08); transition: var(--transition);
-      position: relative; overflow: hidden;
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.25;
+      filter: brightness(0.5) contrast(1.2);
     }
-    .card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(214,232,250,0.88) 0%, rgba(232,242,253,0.85) 100%);
+      z-index: 2;
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: rgba(10, 22, 40, 0.15);
+      border-radius: 50%;
+      animation: floatUp 8s ease-in-out infinite;
+      box-shadow: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(-120vh) translateX(30px) scale(0.3); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-logo {
+      width: min(420px, 80%);
+      margin: 0 auto 30px;
+      display: block;
+      filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.4));
+      animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    header p {
+      font-size: clamp(20px, 3vw, 28px);
+      color: #2a4a6b;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s backwards;
+      line-height: 1.5;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      animation: bounce 2.5s infinite;
+      cursor: pointer;
+    }
+
+    .scroll-indicator::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 50px;
+      border: 2px solid rgba(10, 22, 40, 0.35);
+      border-radius: 20px;
+      position: relative;
+    }
+
+    .scroll-indicator::after {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 10px;
+      background: rgba(10, 22, 40, 0.5);
+      border-radius: 3px;
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: scrollWheel 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    @keyframes scrollWheel {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      margin-bottom: 60px;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+      margin: 20px auto 0;
+      border-radius: 2px;
     }
-    .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-    .card:hover::before { transform: scaleX(1); }
 
-    .card-title { font-size: 1.5rem; font-weight: 700; color: var(--text-dark); letter-spacing: -0.015em; margin-bottom: 6px; }
-    .card-bar { width: 40px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; margin-bottom: 22px; }
-
-    p { color: var(--text-medium); font-size: 17px; line-height: 1.8; margin-bottom: 16px; }
-    p:last-child { margin-bottom: 0; }
-    strong { color: var(--text-dark); }
-
-    .callout {
-      background: #f0f6ff; border: 1px solid rgba(11,76,201,0.15);
-      border-radius: 14px; padding: 18px 22px; margin: 20px 0;
+    /* Cards */
+    .card {
+      background: var(--bg-white);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 76, 201, 0.08);
+      transition: var(--transition);
+      transform: translateY(40px);
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
     }
-    .callout p { margin: 0; font-size: 15.5px; }
-    .callout strong { color: var(--primary); }
 
-    /* Placeholder */
-    .placeholder-box {
-      text-align: center; padding: 60px 40px;
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card.reveal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card p {
+      color: var(--text-medium);
+      font-size: 17px;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    /* Phone Video Container */
+    .phone-video-container {
+      max-width: 300px;
+      margin: auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(11, 76, 201, 0.25);
+      background: #000;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .phone-video-container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 70px rgba(11, 76, 201, 0.35);
+    }
+
+    .phone-video-container video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .team-member {
+      background: var(--bg-white);
+      border-radius: 24px;
+      padding: 40px 35px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 76, 201, 0.08);
+      transition: var(--transition);
+      transform: translateY(40px);
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-member::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .team-member.reveal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .team-member:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .team-member:hover::before {
+      transform: scaleX(1);
+    }
+
+    .team-member img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 24px;
+      border: 4px solid var(--bg-light);
+      box-shadow: 0 8px 24px rgba(11, 76, 201, 0.15);
+      transition: var(--transition);
+    }
+
+    .team-member:hover img {
+      transform: scale(1.08);
+      box-shadow: 0 12px 32px rgba(11, 76, 201, 0.25);
+    }
+
+    .team-member h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .team-member p {
+      color: var(--text-medium);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .team-member p strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .team-bio {
+      margin-top: 16px;
+      text-align: left;
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+      color: var(--text-light) !important;
+    }
+
+    /* Contact Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 600px;
+      margin: 40px auto 0;
+      background: var(--bg-white);
+      padding: 48px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(11, 76, 201, 0.08);
+    }
+
+    input, textarea {
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 2px solid rgba(11, 76, 201, 0.12);
+      font-size: 16px;
+      font-family: 'Outfit', sans-serif;
+      transition: var(--transition);
       background: var(--bg-light);
-      border: 2px dashed rgba(11,76,201,0.15);
-      border-radius: 16px; margin-bottom: 0;
+      color: var(--text-dark);
     }
-    .placeholder-box .icon { font-size: 3rem; display: block; margin-bottom: 16px; }
-    .placeholder-box h3 { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
-    .placeholder-box p { font-size: 15px; }
 
+    input::placeholder, textarea::placeholder { color: var(--text-light); }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--bg-white);
+      box-shadow: 0 0 0 4px rgba(11, 76, 201, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    button {
+      padding: 18px 36px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 17px;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 8px 24px rgba(11, 76, 201, 0.3);
+      letter-spacing: 0.02em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    button:hover::before { left: 100%; }
+    button:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(11, 76, 201, 0.4); }
+    button:active { transform: translateY(-1px); }
+
+    /* Footer */
     footer {
       background: linear-gradient(135deg, #c8ddf5 0%, #daeaf9 100%);
-      color: var(--text-dark); padding: 60px 40px; text-align: center; margin-top: 80px; position: relative;
+      color: var(--text-dark);
+      padding: 60px 40px;
+      text-align: center;
+      margin-top: 80px;
+      position: relative;
+      overflow: hidden;
     }
+
     footer::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
       background: linear-gradient(90deg, transparent, rgba(11,76,201,0.3), transparent);
     }
-    footer p { font-size: 15px; opacity: 1; }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
-    .hamburger span { width: 25px; height: 3px; background: var(--text-dark); border-radius: 2px; }
+    footer p { font-size: 15px; opacity: 1; letter-spacing: 0.02em; }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-      .nav-container { padding: 12px 24px; position: relative; }
-      .nav-logo img { height: 50px; }
-      .page-hero { margin-top: 74px; padding: 60px 24px 50px; }
-      .nav-links {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(255,255,255,0.98); flex-direction: column;
-        padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        max-height: 0; overflow: hidden; opacity: 0; transition: all 0.3s ease; gap: 0;
+
+      .nav-container {
+        padding: 12px 24px;
+        position: relative;
       }
+
+      .nav-logo img { height: 50px; }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s ease;
+        gap: 0;
+      }
+
       .nav-links.active { max-height: 350px; opacity: 1; }
-      .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 16px; }
+
+      .nav-links a {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        font-size: 16px;
+      }
+
       .nav-links a:last-child { border-bottom: none; }
-      main { padding: 40px 24px 80px; }
+
+      header { min-height: 38vh; padding: 80px 20px 30px; }
+      .hero-logo { width: min(300px, 85%); margin-bottom: 24px; }
+      section { padding: 70px 24px; }
+      h2 { margin-bottom: 40px; }
       .card { padding: 32px 24px; }
+      .team-grid { grid-template-columns: 1fr; gap: 28px; }
+      form { padding: 36px 24px; }
+      footer { padding: 48px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-logo { width: min(260px, 90%); }
+      .phone-video-container { max-width: 100%; }
     }
   </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="nav-container">
-    <div class="nav-logo">
-      <a href="main.html"><img src="prodigeye.png" alt="ProdigEye Logo" /></a>
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#home">
+          <img src="prodigeye.png" alt="ProdigEye Logo" />
+        </a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="technology.html" onclick="closeMenu()">Technology</a>
+        <a href="medical.html" onclick="closeMenu()">Medical</a>
+        <a href="#team" onclick="closeMenu()">Team</a>
+        <a href="#contact" onclick="closeMenu()">Contact Us</a>
+      </div>
     </div>
-    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
-      <span></span><span></span><span></span>
+  </nav>
+
+  <header id="home">
+    <video autoplay muted loop playsinline>
+      <source src="https://cdn.coverr.co/videos/coverr-doctor-checking-a-patients-eye-8366/1080p.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <img src="prodigeye.png" alt="ProdigEye" class="hero-logo" />
+      <p>AI-Powered Smartphone Eye Diagnostics</p>
     </div>
-    <div class="nav-links" id="navLinks">
-      <a href="main.html#about" onclick="this.closest('.nav-links').classList.remove('active')">About</a>
-      <a href="technology.html" onclick="this.closest('.nav-links').classList.remove('active')">Technology</a>
-      <a href="medical.html" class="active" onclick="this.closest('.nav-links').classList.remove('active')">Medical</a>
-      <a href="main.html#team" onclick="this.closest('.nav-links').classList.remove('active')">Team</a>
-      <a href="main.html#contact" onclick="this.closest('.nav-links').classList.remove('active')">Contact Us</a>
+    <div class="scroll-indicator"></div>
+  </header>
+
+  <section id="video">
+    <h2>Demo Video</h2>
+    <div class="card reveal-on-scroll" style="text-align:center;">
+      <div class="phone-video-container">
+        <video controls playsinline>
+          <source src="demo-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
-  </div>
-</nav>
+  </section>
 
-<div class="page-hero">
-  <span class="eyebrow">Clinical Evidence</span>
-  <h1>Medical</h1>
-  <p>Evidence-based clinical decision support for anterior segment eye disease</p>
-  <div class="hero-bar"></div>
-</div>
-
-<main>
-
-  <!--
-  =====================================================================
-  PASTE YOUR MEDICAL CONTENT HERE.
-  Upload your Medical Word document and I'll fill in this page
-  exactly as the Technology page was done.
-
-  Template for each section:
-
-  <div class="card">
-    <h2 class="card-title">Section Title</h2>
-    <div class="card-bar"></div>
-    <p>Your paragraph text here.</p>
-    <div class="callout">
-      <p><strong>Key Point:</strong> Highlighted callout text here.</p>
+  <section id="about">
+    <h2>About ProdigEye</h2>
+    <div class="card reveal-on-scroll">
+      <p>ProdigEye is a medical-grade AI diagnostic platform that enables non-specialist clinicians to accurately identify anterior segment eye diseases using only a standard smartphone camera. Designed for primary care, pediatrics, and emergency settings, ProdigEye delivers specialist-level diagnostic insight at the point of care, helping reduce misdiagnosis, unnecessary referrals, and delays in treatment where access to ophthalmologists and ocular equipment is limited.</p>
     </div>
-  </div>
-  =====================================================================
-  -->
+  </section>
 
-  <div class="card">
-    <div class="placeholder-box">
-      <span class="icon">🩺</span>
-      <h3>Medical Content Coming Soon</h3>
-      <p>Upload your Medical Word document and this page will be filled in<br/>
-         with the same styled sections as the Technology page.</p>
+  <section id="tech">
+    <h2>Our Technology</h2>
+    <div class="card reveal-on-scroll">
+      <p>ProdigEye transforms a smartphone into a clinical eye diagnostic tool. Using AI-powered image analysis, the platform supports early and accurate identification of anterior segment eye conditions directly at the point of care. By reducing diagnostic uncertainty and unnecessary emergency room referrals, ProdigEye improves clinical confidence, lowers healthcare costs, and ensures patients receive timely, appropriate care, without requiring additional hardware or specialist training.</p>
+      <p style="margin-top: 20px;">
+        <a href="technology.html" style="color: var(--primary); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px;">
+          Read the full Technology Overview →
+        </a>
+      </p>
     </div>
-  </div>
+  </section>
 
-</main>
+  <section id="team">
+    <h2>Our Team</h2>
+    <div class="team-grid">
+      <div class="team-member reveal-on-scroll">
+        <img src="team/ron-ritter.png" alt="Ron Ritter" />
+        <h3>Ron Ritter</h3>
+        <p><strong>Co-Founder & CEO</strong></p>
+        <p class="team-bio">
+          Ron is responsible for the company's core technology, from model
+          architecture to technical strategy. He is a proven AI leader and
+          entrepreneur with over 20 years of experience. His career is highlighted
+          by founding and selling his own AI company, Algotrace, to a major
+          international high-tech firm. Ron holds a Master's degree in Statistics
+          from the University of Haifa.
+        </p>
+      </div>
+      <div class="team-member reveal-on-scroll">
+        <img src="team/moshe-fisher2.png" alt="Dr. Moshe Fisher" />
+        <h3>Dr. Moshe Fisher</h3>
+        <p><strong>Co-Founder & Chief Medical Officer</strong></p>
+        <p class="team-bio">
+          Dr. Fisher is an American board-certified Ophthalmologist specializing in
+          Cornea & External Disease with 27 years of clinical experience. He earned
+          his medical degree from Albert Einstein College of Medicine in New York,
+          completed his Ophthalmology residency at Long Island Jewish Medical
+          Center, and pursued an advanced fellowship in Cornea and External Disease
+          at Mount Sinai–NYU. He previously served as Assistant Director of the
+          Cornea Service and Assistant Clinical Professor at the University of
+          Medicine & Dentistry of New Jersey. He is currently the Director of the
+          Modiin Eye Center in Modiin, Israel.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <p>© 2025 ProdigEye — All Rights Reserved</p>
-</footer>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Email Address" required />
+      <textarea rows="5" placeholder="Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-</script>
+  <footer>
+    <p>© 2025 ProdigEye — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Reveal elements on scroll
+    const revealEls = document.querySelectorAll('.reveal-on-scroll');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('reveal');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Particle generation
+    const particleContainer = document.getElementById('particles');
+    for (let i = 0; i < 35; i++) {
+      let p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
+      p.style.animationDuration = (6 + Math.random() * 6) + 's';
+      p.style.animationDelay = Math.random() * 4 + 's';
+      particleContainer.appendChild(p);
+    }
+
+    // Smooth scroll for anchor links only
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Scroll indicator click
+    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+      document.querySelector('#video').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('active');
+    }
+  </script>
 
 </body>
 </html>
