@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="prodigeye.png" />
+  <link rel="shortcut icon" href="prodigeye.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ProdigEye</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,13 +130,13 @@
     /* Hero Section */
     header {
       position: relative;
-      min-height: 65vh;
+      min-height: 42vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 120px 20px 80px;
+      padding: 90px 20px 40px;
       overflow: hidden;
       background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%);
     }
@@ -610,7 +612,7 @@
 
       .nav-links a:last-child { border-bottom: none; }
 
-      header { min-height: 75vh; padding: 100px 20px 60px; }
+      header { min-height: 38vh; padding: 80px 20px 30px; }
       .hero-logo { width: min(300px, 85%); margin-bottom: 24px; }
       section { padding: 70px 24px; }
       h2 { margin-bottom: 40px; }
@@ -641,6 +643,7 @@
         <span></span>
       </div>
       <div class="nav-links" id="navLinks">
+        <a href="#home" onclick="closeMenu()">Home</a>
         <a href="#about" onclick="closeMenu()">About</a>
         <a href="technology.html" onclick="closeMenu()">Technology</a>
         <a href="medical.html" onclick="closeMenu()">Medical</a>

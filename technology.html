@@ -271,7 +271,7 @@
       .hamburger { display: flex; }
       .nav-container { padding: 12px 24px; position: relative; }
       .nav-logo img { height: 50px; }
-      .page-hero { margin-top: 74px; padding: 30px 24px 26px; }
+      .page-hero { margin-top: 74px; padding: 20px 24px 20px; }
       .nav-links {
         position: absolute; top: 100%; left: 0; right: 0;
         background: rgba(255,255,255,0.98);
@@ -299,6 +299,7 @@
       <span></span><span></span><span></span>
     </div>
     <div class="nav-links" id="navLinks">
+      <a href="main.html" onclick="this.closest('.nav-links').classList.remove('active')">Home</a>
       <a href="main.html#about" onclick="this.closest('.nav-links').classList.remove('active')">About</a>
       <a href="technology.html" class="active" onclick="this.closest('.nav-links').classList.remove('active')">Technology</a>
       <a href="medical.html" onclick="this.closest('.nav-links').classList.remove('active')">Medical</a>
