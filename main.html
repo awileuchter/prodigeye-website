@@ -632,28 +632,7 @@
 </head>
 <body>
 
-  <nav id="navbar">
-    <div class="nav-container">
-      <div class="nav-logo">
-        <a href="#home">
-          <img src="prodigeye.png" alt="ProdigEye Logo" />
-        </a>
-      </div>
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="nav-links" id="navLinks">
-        <a href="#home" onclick="closeMenu()">Home</a>
-        <a href="#about" onclick="closeMenu()">About</a>
-        <a href="technology.html" onclick="closeMenu()">Technology</a>
-        <a href="medical.html" onclick="closeMenu()">Medical</a>
-        <a href="#team" onclick="closeMenu()">Team</a>
-        <a href="#contact" onclick="closeMenu()">Contact Us</a>
-      </div>
-    </div>
-  </nav>
+  <div id="global-nav"></div>
 
   <header id="home">
     <video autoplay muted loop playsinline>
@@ -744,13 +723,9 @@
     </form>
   </section>
 
-  <footer>
-    <p>© 2025 ProdigEye — All Rights Reserved</p>
-  </footer>
+    <div id="global-footer"></div>
 
   <script>
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     });
@@ -792,12 +767,11 @@
 
     // Mobile menu
     function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('active');
     }
     function closeMenu() {
-      document.getElementById('navLinks').classList.remove('active');
     }
   </script>
 
+  <script src="components.js"></script>
 </body>
 </html>

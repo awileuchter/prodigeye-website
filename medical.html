@@ -166,6 +166,9 @@
     }
 
     /* FOOTER */
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-bottom: 16px; }
+    .footer-links a { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
     footer {
       background: linear-gradient(135deg, #c8ddf5 0%, #daeaf9 100%);
       color: var(--text-dark); padding: 60px 40px; text-align: center; margin-top: 80px; position: relative;
@@ -205,24 +208,7 @@
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="nav-container">
-    <div class="nav-logo">
-      <a href="main.html"><img src="prodigeye.png" alt="ProdigEye Logo" /></a>
-    </div>
-    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')">
-      <span></span><span></span><span></span>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="main.html" onclick="this.closest('.nav-links').classList.remove('active')">Home</a>
-      <a href="main.html#about" onclick="this.closest('.nav-links').classList.remove('active')">About</a>
-      <a href="technology.html" onclick="this.closest('.nav-links').classList.remove('active')">Technology</a>
-      <a href="medical.html" class="active" onclick="this.closest('.nav-links').classList.remove('active')">Medical</a>
-      <a href="main.html#team" onclick="this.closest('.nav-links').classList.remove('active')">Team</a>
-      <a href="main.html#contact" onclick="this.closest('.nav-links').classList.remove('active')">Contact Us</a>
-    </div>
-  </div>
-</nav>
+<div id="global-nav"></div>
 
 <div class="page-hero">
   <span class="eyebrow">Clinical Reference</span>
@@ -424,15 +410,10 @@
 
 </main>
 
-<footer>
-  <p>© 2025 ProdigEye. All Rights Reserved</p>
-</footer>
+  <div id="global-footer"></div>
 
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-  });
-</script>
 
+
+  <script src="components.js"></script>
 </body>
 </html>

@@ -84,20 +84,7 @@
   </style>
 </head>
 <body>
-<nav id="navbar">
-  <div class="nav-container">
-    <div class="nav-logo"><a href="main.html"><img src="prodigeye.png" alt="ProdigEye Logo" /></a></div>
-    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <div class="nav-links" id="navLinks">
-      <a href="main.html" onclick="this.closest('.nav-links').classList.remove('active')">Home</a>
-      <a href="main.html#about" onclick="this.closest('.nav-links').classList.remove('active')">About</a>
-      <a href="technology.html" onclick="this.closest('.nav-links').classList.remove('active')">Technology</a>
-      <a href="medical.html" onclick="this.closest('.nav-links').classList.remove('active')">Medical</a>
-      <a href="main.html#team" onclick="this.closest('.nav-links').classList.remove('active')">Team</a>
-      <a href="main.html#contact" onclick="this.closest('.nav-links').classList.remove('active')">Contact Us</a>
-    </div>
-  </div>
-</nav>
+<div id="global-nav"></div>
 
 <div class="page-hero">
   <span class="eyebrow">Legal</span>
@@ -164,20 +151,10 @@
     <p>If you have questions about our use of cookies, please contact:</p>
     <div class="contact-box">
       <p><strong>ProdigEye Ltd.</strong></p>
-      <p>Email: <a href="mailto:privacy@prodigeye.com">privacy@prodigeye.com</a></p>
+      <p>Email: <a href="/cdn-cgi/l/email-protection#cdbdbfa4bbacaeb48dbdbfa2a9a4aaa8b4a8e3aea2a0"><span class="__cf_email__" data-cfemail="6a1a18031c0b09132a1a18050e030d0f130f44090507">[email&#160;protected]</span></a></p>
     </div>
   </div>
 </main>
 
-<footer>
-  <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Use</a>
-    <a href="cookies.html">Cookie Policy</a>
-    <a href="disclaimer.html">Medical Disclaimer</a>
-  </div>
-  <p>© 2025 ProdigEye. All Rights Reserved</p>
-</footer>
-<script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });</script>
-</body>
-</html>
+<div id="global-footer"></div>
+<script data-cfasync="fal
