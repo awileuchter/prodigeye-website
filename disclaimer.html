@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='48' ry='48' fill='%230b4cc9'/%3E%3Cellipse cx='50' cy='50' rx='30' ry='30' fill='white'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%230b4cc9'/%3E%3Ccircle cx='44' cy='44' r='5' fill='white'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdigEye – Medical Disclaimer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --primary: #0b4cc9; --primary-dark: #093a9b; --accent: #00d9ff; --text-dark: #0a1628; --text-medium: #4a5568; --text-light: #718096; --bg-white: #ffffff; --bg-light: #f8fafc; --bg-gradient: linear-gradient(135deg, #eef5ff 0%, #f8fafc 100%); --shadow-md: 0 4px 16px rgba(11,76,201,0.12); --shadow-lg: 0 12px 40px rgba(11,76,201,0.16); --transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; color: var(--text-dark); background: var(--bg-gradient); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.88); backdrop-filter: blur(20px) saturate(180%); z-index: 1000; transition: var(--transition); border-bottom: 1px solid rgba(11,76,201,0.08); }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 18px 50px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo img { height: 85px; width: auto; display: block; }
+    .nav-logo:hover img { transform: translateY(-2px); filter: drop-shadow(0 4px 12px rgba(11,76,201,0.3)); }
+    .nav-links { display: flex; gap: 40px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 15px; position: relative; transition: var(--transition); }
+    .nav-links a::before { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; transition: transform 0.3s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::before { transform: translateX(-50%) scaleX(1); }
+    .page-hero { margin-top: 121px; background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%); padding: 40px 40px 36px; min-height: 220px; display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; }
+    .page-hero .eyebrow { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); font-weight: 600; margin-bottom: 16px; display: block; }
+    .page-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: #0a1628; letter-spacing: -0.025em; margin-bottom: 10px; }
+    .page-hero p { font-size: 1rem; color: #3a5a80; max-width: 500px; margin: 0 auto; }
+    .hero-bar { width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; margin: 12px auto 0; }
+    main { max-width: 860px; margin: 0 auto; padding: 60px 40px 100px; }
+    .alert-banner { background: #fff7ed; border: 2px solid #fed7aa; border-radius: 16px; padding: 24px 28px; margin-bottom: 40px; display: flex; gap: 16px; align-items: flex-start; }
+    .alert-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .alert-banner h3 { font-size: 1.1rem; font-weight: 700; color: #c2410c; margin-bottom: 6px; }
+    .alert-banner p { font-size: 15px; color: #92400e; line-height: 1.7; margin: 0; }
+    .section { background: var(--bg-white); border-radius: 20px; padding: 40px; margin-bottom: 24px; box-shadow: var(--shadow-md); border: 1px solid rgba(11,76,201,0.08); position: relative; overflow: hidden; transition: var(--transition); }
+    .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.5s; }
+    .section:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .section:hover::before { transform: scaleX(1); }
+    .section h2 { font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .section-bar { width: 36px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; margin-bottom: 18px; }
+    .section p { color: var(--text-medium); font-size: 16px; line-height: 1.8; margin-bottom: 14px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { list-style: none; padding: 0; margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .section ul li { display: flex; align-items: flex-start; gap: 10px; color: var(--text-medium); font-size: 16px; line-height: 1.7; }
+    .section ul li::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); margin-top: 9px; }
+    .section strong { color: var(--text-dark); }
+    .highlight-box { background: #f0f6ff; border: 1px solid rgba(11,76,201,0.15); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 15px; color: var(--text-medium); line-height: 1.7; }
+    .highlight-box strong { color: var(--primary); }
+    .contact-box { background: linear-gradient(135deg, #eef5ff, #dbeafe); border-radius: 14px; padding: 24px; margin-top: 16px; }
+    .contact-box p { margin-bottom: 6px; font-size: 15px; }
+    .contact-box a { color: var(--primary); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+    footer { background: linear-gradient(135deg, #c8ddf5 0%, #daeaf9 100%); color: var(--text-dark); padding: 40px; text-align: center; margin-top: 80px; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(11,76,201,0.3), transparent); }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-bottom: 16px; }
+    .footer-links a { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
+    footer p { font-size: 14px; color: var(--text-light); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+    .hamburger span { width: 25px; height: 3px; background: var(--text-dark); border-radius: 2px; }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-container { padding: 12px 24px; position: relative; }
+      .nav-logo img { height: 50px; }
+      .page-hero { margin-top: 74px; padding: 30px 24px 26px; min-height: 160px; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-height: 0; overflow: hidden; opacity: 0; transition: all 0.3s ease; gap: 0; }
+      .nav-links.active { max-height: 400px; opacity: 1; }
+      .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 16px; }
+      .nav-links a:last-child { border-bottom: none; }
+      main { padding: 40px 24px 80px; }
+      .section { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><a href="main.html"><img src="prodigeye.png" alt="ProdigEye Logo" /></a></div>
+    <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('active')"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="main.html" onclick="this.closest('.nav-links').classList.remove('active')">Home</a>
+      <a href="main.html#about" onclick="this.closest('.nav-links').classList.remove('active')">About</a>
+      <a href="technology.html" onclick="this.closest('.nav-links').classList.remove('active')">Technology</a>
+      <a href="medical.html" onclick="this.closest('.nav-links').classList.remove('active')">Medical</a>
+      <a href="main.html#team" onclick="this.closest('.nav-links').classList.remove('active')">Team</a>
+      <a href="main.html#contact" onclick="this.closest('.nav-links').classList.remove('active')">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">Legal</span>
+  <h1>Medical Disclaimer</h1>
+  <p>Important information about the clinical use of ProdigEye</p>
+  <div class="hero-bar"></div>
+</div>
+
+<main>
+  <div class="alert-banner">
+    <div class="alert-icon">⚕️</div>
+    <div>
+      <h3>For Healthcare Professionals Only</h3>
+      <p>ProdigEye is a clinical decision support tool intended exclusively for use by licensed healthcare professionals. It does not provide medical diagnoses and must never be used as a substitute for professional clinical judgment.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>1. Not a Substitute for Professional Medical Advice</h2>
+    <div class="section-bar"></div>
+    <p>The information, analysis, and outputs provided by the ProdigEye platform are intended solely to assist licensed healthcare professionals in their clinical decision-making process. They do not constitute medical diagnoses, prescriptions, or treatment plans.</p>
+    <p>All clinical decisions, including diagnosis, treatment, referral, and patient management, must be made by a qualified and licensed medical practitioner based on their professional assessment of the individual patient, their full medical history, and all relevant clinical findings.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Limitations of AI-Based Analysis</h2>
+    <div class="section-bar"></div>
+    <p>ProdigEye's AI diagnostic outputs are based on pattern recognition from a validated clinical dataset. Users must be aware of the following limitations:</p>
+    <ul>
+      <li>Performance may vary depending on image quality, lighting conditions, and camera specifications</li>
+      <li>The AI system has been validated on specific patient populations and may perform differently on underrepresented demographics</li>
+      <li>The system is designed specifically for anterior segment conditions and should not be used for other ophthalmic or medical conditions</li>
+      <li>Preliminary validation metrics (97.4% sensitivity, 97.5% specificity) are based on an internal dataset of 76 images and may not reflect real-world performance across all clinical settings</li>
+      <li>Edge cases, atypical presentations, and rare conditions may not be reliably identified</li>
+    </ul>
+    <div class="highlight-box"><strong>Clinical oversight is mandatory:</strong> Every ProdigEye output must be reviewed by a licensed clinician before any clinical action is taken. The platform is a support tool, not an autonomous diagnostic system.</div>
+  </div>
+
+  <div class="section">
+    <h2>3. Regulatory Status</h2>
+    <div class="section-bar"></div>
+    <p>ProdigEye is developed as a Software as a Medical Device (SaMD) in accordance with applicable regulatory frameworks. Users should be aware that:</p>
+    <ul>
+      <li>The platform is currently in the clinical validation and regulatory submission phase</li>
+      <li>It has not yet received CE marking under EU MDR 2017/745 or FDA clearance/approval</li>
+      <li>Use outside of approved clinical investigation or research contexts may be subject to local regulatory restrictions</li>
+      <li>Healthcare institutions are responsible for ensuring compliance with their own regulatory and institutional requirements before deploying this tool</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>4. No Doctor-Patient Relationship</h2>
+    <div class="section-bar"></div>
+    <p>Access to and use of the ProdigEye website and platform does not create a doctor-patient relationship between ProdigEye Ltd. and any end patient. ProdigEye Ltd. is a technology company, not a healthcare provider.</p>
+    <p>Patients should always consult a qualified healthcare professional for any medical concerns. If a patient believes they have a medical emergency, they should contact emergency services immediately.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Indemnification</h2>
+    <div class="section-bar"></div>
+    <p>Healthcare professionals and institutions using the ProdigEye platform agree to indemnify and hold harmless ProdigEye Ltd. and its officers, directors, employees, and agents from any claims, damages, losses, or liabilities arising from:</p>
+    <ul>
+      <li>Clinical decisions made on the basis of ProdigEye outputs without appropriate professional review</li>
+      <li>Use of the platform outside of its intended scope or validated indications</li>
+      <li>Failure to comply with applicable medical device regulations in their jurisdiction</li>
+      <li>Any adverse patient outcomes resulting from inappropriate reliance on automated outputs</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>6. Emergency Situations</h2>
+    <div class="section-bar"></div>
+    <p>ProdigEye is not designed for use in emergency situations requiring immediate medical intervention. If you or a patient are experiencing a medical emergency, including sudden vision loss, severe eye pain, chemical injury to the eye, or penetrating trauma, please contact emergency services immediately.</p>
+    <p>In Israel: Emergency services 101 (MDA). In the EU: 112. In the US: 911.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Contact</h2>
+    <div class="section-bar"></div>
+    <p>For medical and regulatory enquiries regarding this disclaimer:</p>
+    <div class="contact-box">
+      <p><strong>ProdigEye Ltd. — Medical Affairs</strong></p>
+      <p>Email: <a href="mailto:medical@prodigeye.com">medical@prodigeye.com</a></p>
+      <p>General enquiries: <a href="mailto:info@prodigeye.com">info@prodigeye.com</a></p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="cookies.html">Cookie Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+  </div>
+  <p>© 2025 ProdigEye. All Rights Reserved</p>
+</footer>
+<script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });</script>
+</body>
+</html>

@@ -253,6 +253,9 @@
     }
 
     /* ── FOOTER ── */
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-bottom: 16px; }
+    .footer-links a { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
     footer {
       background: linear-gradient(135deg, #c8ddf5 0%, #daeaf9 100%);
       color: var(--text-dark); padding: 60px 40px; text-align: center;
@@ -507,7 +510,13 @@
 </main>
 
 <footer>
-  <p>© 2025 ProdigEye — All Rights Reserved</p>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="cookies.html">Cookie Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+  </div>
+  <p>© 2025 ProdigEye. All Rights Reserved</p>
 </footer>
 
 <script>
