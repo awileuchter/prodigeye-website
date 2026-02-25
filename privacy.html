@@ -78,7 +78,20 @@
   </style>
 </head>
 <body>
-<div id="global-nav"></div>
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><a href="main.html"><img src="prodigeye.png" alt="ProdigEye Logo" /></a></div>
+    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="main.html">Home</a>
+      <a href="main.html#about">About</a>
+      <a href="technology.html">Technology</a>
+      <a href="medical.html">Medical</a>
+      <a href="main.html#team">Team</a>
+      <a href="main.html#contact">Contact Us</a>
+    </div>
+  </div>
+</nav>
 
 <div class="page-hero">
   <span class="eyebrow">Legal</span>
@@ -241,3 +254,30 @@
       <p><strong>ProdigEye Ltd.</strong></p>
       <p>Data Protection Officer: <a href="/cdn-cgi/l/email-protection#fa8a88938c9b9983ba8a88959e939d9f839fd4999597"><span class="__cf_email__" data-cfemail="6f1f1d06190e0c162f1f1d000b06080a160a410c0002">[email&#160;protected]</span></a></p>
       <p>General enquiries: <a href="/cdn-cgi/l/email-protection#f49d
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="cookies.html">Cookie Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+  </div>
+  <p>© 2025 ProdigEye. All Rights Reserved</p>
+</footer>
+
+<script>
+  window.addEventListener("scroll", () => {
+    document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
+  });
+  document.getElementById("hamburgerBtn").addEventListener("click", () => {
+    document.getElementById("navLinks").classList.toggle("active");
+  });
+  document.querySelectorAll("#navLinks a").forEach(a => {
+    a.addEventListener("click", () => document.getElementById("navLinks").classList.remove("active"));
+  });
+</script>
+</body>
+</html>
