@@ -742,11 +742,46 @@
     <a href="terms.html">Terms of Use</a>
     <a href="cookies.html">Cookie Policy</a>
     <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="accessibility.html">Accessibility</a>
   </div>
   <p>© 2025 ProdigEye. All Rights Reserved</p>
 </footer>
 
-  
+  <script>
+    // Reveal cards on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
+    // Team members too
+    const teamObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('reveal'), i * 120);
+          teamObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.team-member').forEach(el => teamObserver.observe(el));
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Hamburger
+    document.getElementById('hamburgerBtn').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('active');
+    });
+    document.querySelectorAll('#navLinks a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+    });
+  </script>
 </body>
 </html>
