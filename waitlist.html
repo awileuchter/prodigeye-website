@@ -29,7 +29,13 @@
     .nav-logo:hover img { transform: translateY(-2px); filter: drop-shadow(0 4px 12px rgba(11,76,201,0.3)); }
     .nav-links { display: flex; gap: 40px; align-items: center; }
     .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 15px; position: relative; transition: var(--transition); }
-    .nav-links a::before { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; transition: transform 0.3s; }
+    .nav-links a.nav-waitlist {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .nav-links a.nav-waitlist:hover { color: var(--primary-dark); }
+    .nav-links a.nav-waitlist::before { background: linear-gradient(90deg, var(--primary), var(--primary)); }
+        .nav-links a::before { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; transition: transform 0.3s; }
     .nav-links a:hover { color: var(--primary); }
     .nav-links a:hover::before { transform: translateX(-50%) scaleX(1); }
     nav.scrolled { box-shadow: var(--shadow-md); }
@@ -174,9 +180,9 @@
       <a href="main.html">Home</a>
       <a href="main.html#about">About</a>
       <a href="technology.html">Technology</a>
-      <a href="waitlist.html" class="active">Waitlist</a>
       <a href="medical.html">Medical</a>
       <a href="main.html#team">Team</a>
+      <a href="waitlist.html" class="nav-waitlist active">Waitlist</a>
       <a href="main.html#contact">Contact Us</a>
     </div>
   </div>
