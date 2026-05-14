@@ -197,6 +197,26 @@
       margin: 0 auto;
     }
 
+    .hero-waitlist-btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px; font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      box-shadow: 0 6px 24px rgba(11,76,201,0.45);
+      transition: var(--transition);
+      animation: fadeInUp 1s cubic-bezier(0.4,0,0.2,1) 0.6s backwards;
+    }
+    .hero-waitlist-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(11,76,201,0.55);
+    }
+
     .hero-logo {
       width: min(420px, 80%);
       margin: 0 auto 30px;
@@ -530,6 +550,19 @@
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-bottom: 16px; }
     .footer-links a { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; }
     .footer-links a:hover { text-decoration: underline; }
+
+    /* Contact form styles */
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-group label { font-size: 13.5px; font-weight: 600; color: var(--text-dark); }
+    .field-group input, .field-group select, .field-group textarea { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(11,76,201,0.18); border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--text-dark); background: #f8fafc; transition: var(--transition); outline: none; }
+    .field-group input:focus, .field-group select:focus, .field-group textarea:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 3px rgba(11,76,201,0.1); }
+    .field-group textarea { resize: vertical; min-height: 120px; }
+    .field-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230b4cc9' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+    #contact-form button[type="submit"] { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; border: none; border-radius: 12px; font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 16px rgba(11,76,201,0.3); }
+    #contact-form button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(11,76,201,0.4); }
+    #contact-form button:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+    @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr !important; } }
+
     footer {
       background: linear-gradient(135deg, #c8ddf5 0%, #daeaf9 100%);
       color: var(--text-dark);
@@ -656,6 +689,7 @@
     <div class="hero-content">
       <img src="prodigeye.png" alt="ProdigEye" class="hero-logo" />
       <p>AI-Powered Smartphone Eye Diagnostics</p>
+      <a href="waitlist.html" class="hero-waitlist-btn">Join the Waitlist →</a>
     </div>
     <div class="scroll-indicator"></div>
   </header>
@@ -728,12 +762,66 @@
 
   <section id="contact">
     <h2>Contact Us</h2>
-    <form>
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <textarea rows="5" placeholder="Message"></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+    <div class="card reveal-on-scroll" style="max-width:620px; margin: 0 auto;">
+
+      <!-- SUCCESS MESSAGE (hidden by default) -->
+      <div id="form-success" style="display:none; text-align:center; padding: 40px 20px;">
+        <div style="font-size:52px; margin-bottom:16px;">✅</div>
+        <h3 style="font-size:1.4rem; font-weight:700; color:var(--text-dark); margin-bottom:10px;">Message Sent!</h3>
+        <p style="color:var(--text-medium);">Thank you for reaching out. We'll get back to you at <strong id="reply-email"></strong> shortly.</p>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <form id="contact-form"
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+            novalidate>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div class="field-group">
+            <label for="name">Full Name <span style="color:#e05;">*</span></label>
+            <input type="text" id="name" name="name" placeholder="Dr. Jane Smith" required />
+          </div>
+          <div class="field-group">
+            <label for="email">Email Address <span style="color:#e05;">*</span></label>
+            <input type="email" id="email" name="email" placeholder="you@clinic.com" required />
+          </div>
+        </div>
+
+        <div class="field-group" style="margin-bottom:16px;">
+          <label for="role">Your Role</label>
+          <select id="role" name="role">
+            <option value="" disabled selected>Select your role</option>
+            <option>General Practitioner</option>
+            <option>Ophthalmologist</option>
+            <option>Emergency Medicine</option>
+            <option>Pediatrician</option>
+            <option>Nurse / Clinical Staff</option>
+            <option>Hospital Administrator</option>
+            <option>Investor / Partner</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field-group" style="margin-bottom:24px;">
+          <label for="message">Message <span style="color:#e05;">*</span></label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us how we can help..." required></textarea>
+        </div>
+
+        <!-- Hidden field to identify the source -->
+        <input type="hidden" name="_subject" value="New ProdigEye Contact Form Submission" />
+
+        <button type="submit" id="submit-btn">
+          <span id="btn-text">Send Message</span>
+          <span id="btn-loading" style="display:none;">Sending...</span>
+        </button>
+
+        <p id="form-error" style="display:none; color:#e05; font-size:14px; margin-top:12px; text-align:center;">
+          Something went wrong. Please email us directly at <a href="mailto:support@prodigeye.com" style="color:var(--primary);">support@prodigeye.com</a>
+        </p>
+
+      </form>
+    </div>
   </section>
 
     <footer>
@@ -748,6 +836,47 @@
 </footer>
 
   <script>
+    // Contact form — Formspree AJAX submission
+    const form = document.getElementById('contact-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnLoading = document.getElementById('btn-loading');
+        const errorMsg = document.getElementById('form-error');
+        const successMsg = document.getElementById('form-success');
+        const replyEmail = document.getElementById('reply-email');
+
+        btn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        errorMsg.style.display = 'none';
+
+        try {
+          const data = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            replyEmail.textContent = document.getElementById('email').value;
+            form.style.display = 'none';
+            successMsg.style.display = 'block';
+          } else {
+            throw new Error('Server error');
+          }
+        } catch (err) {
+          errorMsg.style.display = 'block';
+          btn.disabled = false;
+          btnText.style.display = 'inline';
+          btnLoading.style.display = 'none';
+        }
+      });
+    }
+
     // Reveal cards on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
