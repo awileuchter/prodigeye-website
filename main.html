@@ -129,13 +129,13 @@
     /* Hero Section */
     header {
       position: relative;
-      min-height: 42vh;
+      min-height: 28vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 90px 20px 40px;
+      padding: 100px 20px 70px;
       overflow: hidden;
       background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%);
     }
@@ -199,8 +199,8 @@
 
     .hero-waitlist-btn {
       display: inline-block;
-      margin-top: 28px;
-      padding: 14px 36px;
+      margin-top: 18px;
+      padding: 13px 32px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
       font-family: 'Outfit', sans-serif;
@@ -218,8 +218,8 @@
     }
 
     .hero-logo {
-      width: min(420px, 80%);
-      margin: 0 auto 30px;
+      width: min(320px, 70%);
+      margin: 0 auto 16px;
       display: block;
       filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.4));
       animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -238,12 +238,13 @@
     /* Scroll Indicator */
     .scroll-indicator {
       position: absolute;
-      bottom: 30px;
+      bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 4;
       animation: bounce 2.5s infinite;
       cursor: pointer;
+      opacity: 0.5;
     }
 
     .scroll-indicator::before {
