@@ -234,14 +234,15 @@
       <form
         name="waitlist"
         method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
+        action="https://api.web3forms.com/submit"
         id="waitlist-form"
       >
-        <!-- Required hidden field for Netlify -->
-        <input type="hidden" name="form-name" value="waitlist" />
+        <input type="hidden" name="access_key" value="ff682307-4faa-4779-beb6-0628533a0692" />
+        <input type="hidden" name="subject" value="ProdigEye Waitlist — New Signup" />
+        <input type="hidden" name="from_name" value="ProdigEye Waitlist" />
+        <input type="hidden" name="redirect" value="false" />
         <!-- Honeypot spam filter -->
-        <p style="display:none;"><input name="bot-field" /></p>
+        <input type="checkbox" name="botcheck" style="display:none;">
 
         <div class="field-row">
           <div class="field-group">
@@ -417,10 +418,10 @@
 
     const formData = new FormData(this);
     try {
-      const res = await fetch('/', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formData))
       });
       if (res.ok) {
         document.getElementById('success-email').textContent =

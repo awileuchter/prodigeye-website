@@ -240,7 +240,7 @@
 
     /* Sections */
     section {
-      padding: 100px 40px;
+      padding: 50px 40px;
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
@@ -607,7 +607,7 @@
 
       header { min-height: 38vh; padding: 80px 20px 30px; }
       .hero-logo { width: min(300px, 85%); margin-bottom: 24px; }
-      section { padding: 70px 24px; }
+      section { padding: 36px 24px; }
       h2 { margin-bottom: 40px; }
       .card { padding: 32px 24px; }
       .team-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -731,7 +731,7 @@
 
       <!-- CONTACT FORM -->
       <form id="contact-form"
-            action="https://formspree.io/f/YOUR_FORM_ID"
+            action="https://api.web3forms.com/submit"
             method="POST"
             novalidate>
 
@@ -766,8 +766,11 @@
           <textarea id="message" name="message" rows="5" placeholder="Tell us how we can help..." required></textarea>
         </div>
 
-        <!-- Hidden field to identify the source -->
-        <input type="hidden" name="_subject" value="New ProdigEye Contact Form Submission" />
+        <input type="hidden" name="access_key" value="ff682307-4faa-4779-beb6-0628533a0692" />
+        <input type="hidden" name="subject" value="ProdigEye Website — Contact Form" />
+        <input type="hidden" name="from_name" value="ProdigEye Contact" />
+        <input type="hidden" name="redirect" value="false" />
+        <input type="checkbox" name="botcheck" style="display:none;">
 
         <button type="submit" id="submit-btn">
           <span id="btn-text">Send Message</span>
@@ -813,10 +816,10 @@
 
         try {
           const data = new FormData(form);
-          const response = await fetch(form.action, {
+          const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(data))
           });
 
           if (response.ok) {
