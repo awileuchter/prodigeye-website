@@ -130,6 +130,7 @@
     header {
       position: relative;
       min-height: 220px;
+      max-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -200,8 +201,8 @@
 
     .hero-waitlist-btn {
       display: inline-block;
-      margin-top: 18px;
-      padding: 13px 32px;
+      margin-top: 12px;
+      padding: 11px 30px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
       color: white;
       font-family: 'Outfit', sans-serif;
@@ -219,10 +220,10 @@
     }
 
     .hero-logo {
-      width: min(320px, 70%);
-      margin: 0 auto 16px;
+      width: min(180px, 50%);
+      margin: 0 auto 10px;
       display: block;
-      filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.4));
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.2));
       animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -237,48 +238,8 @@
     }
 
     /* Scroll Indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
-      animation: bounce 2.5s infinite;
-      cursor: pointer;
-      opacity: 0.5;
-    }
-
-    .scroll-indicator::before {
-      content: '';
-      display: block;
-      width: 30px;
-      height: 50px;
-      border: 2px solid rgba(10, 22, 40, 0.35);
-      border-radius: 20px;
-      position: relative;
-    }
-
-    .scroll-indicator::after {
-      content: '';
-      display: block;
-      width: 6px;
-      height: 10px;
-      background: rgba(10, 22, 40, 0.5);
-      border-radius: 3px;
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: scrollWheel 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(8px); }
     }
-
-    @keyframes scrollWheel {
-      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
       100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
     }
 
@@ -693,7 +654,6 @@
       <p>AI-Powered Smartphone Eye Diagnostics</p>
       <a href="waitlist.html" class="hero-waitlist-btn">Join the Waitlist →</a>
     </div>
-    <div class="scroll-indicator"></div>
   </header>
 
   <section id="video">
