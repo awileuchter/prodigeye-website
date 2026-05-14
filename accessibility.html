@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='48' ry='48' fill='%230b4cc9'/%3E%3Cellipse cx='50' cy='50' rx='30' ry='30' fill='white'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%230b4cc9'/%3E%3Ccircle cx='44' cy='44' r='5' fill='white'/%3E%3C/svg%3E" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProdigEye – Accessibility</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #0b4cc9; --primary-dark: #093a9b; --accent: #00d9ff;
+      --text-dark: #0a1628; --text-medium: #4a5568; --text-light: #718096;
+      --bg-white: #ffffff; --bg-light: #f8fafc;
+      --bg-gradient: linear-gradient(135deg, #eef5ff 0%, #f8fafc 100%);
+      --shadow-md: 0 4px 16px rgba(11,76,201,0.12);
+      --shadow-lg: 0 12px 40px rgba(11,76,201,0.16);
+      --transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; color: var(--text-dark); background: var(--bg-gradient); line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; width: 100%; background: rgba(255,255,255,0.88); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); z-index: 1000; transition: var(--transition); border-bottom: 1px solid rgba(11,76,201,0.08); }
+    .nav-container { max-width: 1400px; margin: 0 auto; padding: 18px 50px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo img { height: 85px; width: auto; display: block; transition: var(--transition); }
+    .nav-logo:hover img { transform: translateY(-2px); filter: drop-shadow(0 4px 12px rgba(11,76,201,0.3)); }
+    .nav-links { display: flex; gap: 40px; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 15px; position: relative; transition: var(--transition); }
+    .nav-links a::before { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; transition: transform 0.3s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::before { transform: translateX(-50%) scaleX(1); }
+    nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: var(--shadow-md); }
+
+    /* HERO */
+    .page-hero { margin-top: 121px; background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%); padding: 40px 40px 36px; min-height: 280px; max-height: 280px; display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 1px; background: linear-gradient(90deg, transparent, rgba(0,217,255,0.5), transparent); }
+    .page-hero .eyebrow { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); font-weight: 600; margin-bottom: 16px; display: block; }
+    .page-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: #0a1628; letter-spacing: -0.025em; margin-bottom: 10px; }
+    .page-hero p { font-size: 1rem; color: #3a5a80; max-width: 560px; margin: 0 auto; }
+    .hero-bar { width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; margin: 12px auto 0; }
+
+    /* MAIN */
+    main { max-width: 860px; margin: 0 auto; padding: 60px 40px 100px; }
+
+    .last-updated { background: #f0f6ff; border: 1px solid rgba(11,76,201,0.15); border-radius: 10px; padding: 12px 20px; margin-bottom: 40px; font-size: 14px; color: var(--text-light); }
+    .last-updated strong { color: var(--primary); }
+
+    /* CONFORMANCE BANNER */
+    .conformance-banner { background: linear-gradient(135deg, #eef5ff, #dbeafe); border: 1px solid rgba(11,76,201,0.2); border-radius: 16px; padding: 28px 32px; margin-bottom: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
+    .conformance-item { padding: 16px 12px; background: white; border-radius: 12px; box-shadow: var(--shadow-md); }
+    .conformance-item .badge-label { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 6px; }
+    .conformance-item .badge-value { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
+
+    /* SECTIONS */
+    .section { background: var(--bg-white); border-radius: 20px; padding: 40px; margin-bottom: 24px; box-shadow: var(--shadow-md); border: 1px solid rgba(11,76,201,0.08); position: relative; overflow: hidden; transition: var(--transition); }
+    .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); transform: scaleX(0); transform-origin: left; transition: transform 0.5s; }
+    .section:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .section:hover::before { transform: scaleX(1); }
+    .section h2 { font-size: 1.25rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .section-bar { width: 36px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 3px; margin-bottom: 18px; }
+    .section p { color: var(--text-medium); font-size: 16px; line-height: 1.8; margin-bottom: 14px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { list-style: none; padding: 0; margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+    .section ul li { display: flex; align-items: flex-start; gap: 12px; color: var(--text-medium); font-size: 16px; line-height: 1.7; }
+    .section ul li::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); margin-top: 9px; }
+    .section strong { color: var(--text-dark); }
+
+    /* PRINCIPLE CARDS */
+    .principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    .principle-card { background: var(--bg-light); border: 1px solid rgba(11,76,201,0.08); border-radius: 14px; padding: 22px 24px; }
+    .principle-card .p-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .principle-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .principle-card p { font-size: 14.5px; color: var(--text-medium); line-height: 1.65; margin: 0; }
+
+    /* FEEDBACK BOX */
+    .feedback-box { background: linear-gradient(135deg, #eef5ff, #dbeafe); border-radius: 14px; padding: 28px 32px; margin-top: 16px; }
+    .feedback-box p { margin-bottom: 8px; font-size: 16px; color: var(--text-medium); }
+    .feedback-box p:last-child { margin: 0; }
+    .feedback-box a { color: var(--primary); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+    .feedback-box strong { color: var(--text-dark); }
+
+    .highlight-box { background: #f0f6ff; border: 1px solid rgba(11,76,201,0.15); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 15px; color: var(--text-medium); line-height: 1.7; }
+    .highlight-box strong { color: var(--primary); }
+
+    /* FOOTER */
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-bottom: 16px; }
+    .footer-links a { color: var(--primary); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
+    footer { background: linear-gradient(135deg, #c8ddf5 0%, #daeaf9 100%); color: var(--text-dark); padding: 40px; text-align: center; margin-top: 80px; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(11,76,201,0.3), transparent); }
+    footer p { font-size: 14px; color: var(--text-light); }
+
+    /* HAMBURGER */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+    .hamburger span { width: 25px; height: 3px; background: var(--text-dark); border-radius: 2px; }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-container { padding: 12px 24px; position: relative; }
+      .nav-logo img { height: 50px; }
+      .page-hero { margin-top: 74px; padding: 30px 24px 26px; min-height: 280px; }
+      .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-height: 0; overflow: hidden; opacity: 0; transition: all 0.3s ease; gap: 0; }
+      .nav-links.active { max-height: 400px; opacity: 1; }
+      .nav-links a { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 16px; }
+      .nav-links a:last-child { border-bottom: none; }
+      main { padding: 40px 24px 80px; }
+      .section { padding: 28px 22px; }
+      .conformance-banner { grid-template-columns: 1fr; }
+      .principles-grid { grid-template-columns: 1fr; }
+      .feedback-box { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><a href="main.html"><img src="prodigeye.png" alt="ProdigEye Logo" /></a></div>
+    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="main.html">Home</a>
+      <a href="main.html#about">About</a>
+      <a href="technology.html">Technology</a>
+      <a href="medical.html">Medical</a>
+      <a href="main.html#team">Team</a>
+      <a href="main.html#contact">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow">Legal</span>
+  <h1>Accessibility</h1>
+  <p>Our commitment to making ProdigEye accessible to everyone</p>
+  <div class="hero-bar"></div>
+</div>
+
+<main>
+  <div class="last-updated"><strong>Last updated:</strong> February 2026 &nbsp;|&nbsp; Effective date: February 2026</div>
+
+  <div class="conformance-banner">
+    <div class="conformance-item">
+      <div class="badge-label">Standard</div>
+      <div class="badge-value">WCAG 2.1</div>
+    </div>
+    <div class="conformance-item">
+      <div class="badge-label">Target Level</div>
+      <div class="badge-value">AA</div>
+    </div>
+    <div class="conformance-item">
+      <div class="badge-label">Regulations</div>
+      <div class="badge-value">ADA / EAA</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Our Commitment</h2>
+    <div class="section-bar"></div>
+    <p>ProdigEye is committed to ensuring digital accessibility for all users, including people with disabilities. We strive to make our website usable by as many people as possible, regardless of technology or ability.</p>
+    <p>We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA, as referenced by the Americans with Disabilities Act (ADA), the European Accessibility Act (EAA) (Directive (EU) 2019/882), and the EU Web Accessibility Directive (WAD) 2016/2102. Accessibility is an ongoing effort and we continually work to improve the experience for all users.</p>
+  </div>
+
+  <div class="section">
+    <h2>The Four Principles of Accessibility</h2>
+    <div class="section-bar"></div>
+    <p>Our website is designed and developed following the four core WCAG principles:</p>
+    <div class="principles-grid">
+      <div class="principle-card">
+        <span class="p-icon">👁️</span>
+        <h3>Perceivable</h3>
+        <p>Information and interface components are presented in ways all users can perceive, including through assistive technologies such as screen readers.</p>
+      </div>
+      <div class="principle-card">
+        <span class="p-icon">⌨️</span>
+        <h3>Operable</h3>
+        <p>All navigation and interactive elements are fully operable via keyboard, and users are given sufficient time to interact with content.</p>
+      </div>
+      <div class="principle-card">
+        <span class="p-icon">💬</span>
+        <h3>Understandable</h3>
+        <p>Text is readable and understandable. Page behaviour is predictable and users are helped to avoid and correct mistakes.</p>
+      </div>
+      <div class="principle-card">
+        <span class="p-icon">🔧</span>
+        <h3>Robust</h3>
+        <p>Content is built to be reliably interpreted by a wide range of user agents, including current and future assistive technologies.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Measures We Have Taken</h2>
+    <div class="section-bar"></div>
+    <p>In building and maintaining this website, we have implemented the following accessibility measures:</p>
+    <ul>
+      <li><strong>Semantic HTML:</strong> Proper use of HTML elements to convey meaning and structure to assistive technologies</li>
+      <li><strong>Colour contrast:</strong> Text and interactive elements meet or exceed WCAG 2.1 AA contrast ratio requirements (minimum 4.5:1 for normal text)</li>
+      <li><strong>Responsive design:</strong> The website adapts to all screen sizes and orientations, including mobile devices and tablets</li>
+      <li><strong>Keyboard navigation:</strong> All interactive elements, including navigation menus, links, and forms, are accessible via keyboard alone</li>
+      <li><strong>Text alternatives:</strong> All meaningful images include descriptive alt text for screen reader users</li>
+      <li><strong>Readable fonts:</strong> We use the Outfit typeface at sizes and weights that support legibility across devices</li>
+      <li><strong>Language declaration:</strong> The HTML lang attribute is set to English to assist screen readers with correct pronunciation</li>
+      <li><strong>No reliance on colour alone:</strong> Information is not conveyed by colour alone and is supplemented by text or other visual indicators</li>
+      <li><strong>No time limits:</strong> No content on this website expires or is time-limited in a way that could disadvantage users with disabilities</li>
+      <li><strong>No flashing content:</strong> This website contains no content that flashes more than three times per second</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Known Limitations</h2>
+    <div class="section-bar"></div>
+    <p>While we strive to meet WCAG 2.1 Level AA across the entire website, some areas are still being improved:</p>
+    <ul>
+      <li>Some older embedded SVG illustrations may not have full descriptive alt text for screen readers. We are working to add text alternatives to all visual content.</li>
+      <li>Some complex clinical tables may not be fully optimised for all screen reader software. We are reviewing these and will improve their structure.</li>
+    </ul>
+    <div class="highlight-box"><strong>We welcome feedback:</strong> If you encounter any accessibility barrier on our website, please contact us. Your feedback helps us improve the experience for everyone.</div>
+  </div>
+
+  <div class="section">
+    <h2>Applicable Regulations</h2>
+    <div class="section-bar"></div>
+    <p>This accessibility statement is made in accordance with the following laws and standards:</p>
+    <ul>
+      <li><strong>WCAG 2.1:</strong> Web Content Accessibility Guidelines published by the World Wide Web Consortium (W3C)</li>
+      <li><strong>ADA Title III (US):</strong> The Americans with Disabilities Act requires that websites of businesses open to the public be accessible to individuals with disabilities</li>
+      <li><strong>European Accessibility Act (EAA):</strong> EU Directive 2019/882, applicable from June 2025, requires digital services to meet accessibility standards</li>
+      <li><strong>EN 301 549:</strong> European standard for ICT accessibility requirements, harmonised with WCAG 2.1</li>
+      <li><strong>Section 508 (US):</strong> Federal standard for accessible electronic and information technology</li>
+      <li><strong>Israeli Standard SI 5568:</strong> Israeli accessibility standard for websites and digital services</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Assistive Technologies Tested</h2>
+    <div class="section-bar"></div>
+    <p>We have tested or aim to ensure compatibility with the following assistive technologies and configurations:</p>
+    <ul>
+      <li>NVDA and JAWS screen readers with Chrome and Firefox on Windows</li>
+      <li>VoiceOver with Safari on macOS and iOS</li>
+      <li>TalkBack with Chrome on Android</li>
+      <li>Windows High Contrast Mode</li>
+      <li>Browser zoom up to 200% without loss of functionality</li>
+      <li>Keyboard-only navigation on all major browsers</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Feedback and Contact</h2>
+    <div class="section-bar"></div>
+    <p>We actively welcome feedback on the accessibility of the ProdigEye website. If you experience any difficulty accessing any part of this site, please let us know and we will do our best to resolve the issue promptly.</p>
+    <p>We aim to respond to accessibility feedback within 5 business days.</p>
+    <div class="feedback-box">
+      <p><strong>ProdigEye Ltd.</strong></p>
+      <p>Email: <a href="mailto:support@prodigeye.com">support@prodigeye.com</a></p>
+      <p style="margin-top:12px; font-size:14px; color:var(--text-light);">Please include "Accessibility" in the subject line and describe the barrier you encountered, the assistive technology you are using, and the page URL.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Use</a>
+    <a href="cookies.html">Cookie Policy</a>
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="accessibility.html">Accessibility</a>
+  </div>
+  <p>© 2025 ProdigEye. All Rights Reserved</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+  document.getElementById('hamburgerBtn').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('active');
+  });
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active'));
+  });
+</script>
+
+</body>
+</html>
