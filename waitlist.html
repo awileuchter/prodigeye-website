@@ -50,8 +50,10 @@
     .page-hero p { font-size: 1.1rem; color: #3a5a80; max-width: 560px; margin: 0 auto; }
     .hero-bar { width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 4px; margin: 16px auto 0; }
 
-    /* STATS ROW */
-    .stats-row { display: flex; justify-content: center; gap: 40px; padding: 36px 40px 0; flex-wrap: wrap; }
+    /* STATS SECTION */
+    .stats-section { text-align: center; padding: 32px 40px 0; }
+    .stats-row { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 14px; }
+    .stats-note { font-size: 13px; color: var(--text-light); font-style: italic; max-width: 600px; margin: 0 auto; line-height: 1.6; }
     .stat { text-align: center; }
     .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--primary); letter-spacing: -0.03em; }
     .stat-label { font-size: 13px; color: var(--text-light); font-weight: 500; margin-top: 2px; }
@@ -187,23 +189,26 @@
   <div class="hero-bar"></div>
 </div>
 
-<div class="stats-row">
-  <div class="stat">
-    <div class="stat-value">9</div>
-    <div class="stat-label">Conditions Detected</div>
+<div class="stats-section">
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-value">9</div>
+      <div class="stat-label">Conditions to be Detected</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">97.4%</div>
+      <div class="stat-label">Sensitivity</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">97.5%</div>
+      <div class="stat-label">Specificity</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">99.7%</div>
+      <div class="stat-label">AUC-ROC</div>
+    </div>
   </div>
-  <div class="stat">
-    <div class="stat-value">97.4%</div>
-    <div class="stat-label">Sensitivity</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">97.5%</div>
-    <div class="stat-label">Specificity</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">99.7%</div>
-    <div class="stat-label">AUC-ROC</div>
-  </div>
+  <p class="stats-note">* Preliminary results based on initial proof-of-concept validation. Full clinical validation in progress at Sheba Medical Center.</p>
 </div>
 
 <main>
@@ -273,18 +278,69 @@
             <label for="country">Country <span class="optional">(optional)</span></label>
             <select id="country" name="country">
               <option value="" selected>Select country</option>
+              <optgroup label="Middle East">
               <option>Israel</option>
+              <option>United Arab Emirates</option>
+              <option>Saudi Arabia</option>
+              <option>Jordan</option>
+              <option>Egypt</option>
+              <option>Turkey</option>
+              </optgroup>
+              <optgroup label="North America">
               <option>United States</option>
+              <option>Canada</option>
+              <option>Mexico</option>
+              </optgroup>
+              <optgroup label="Europe">
               <option>United Kingdom</option>
               <option>Germany</option>
               <option>France</option>
               <option>Netherlands</option>
               <option>Italy</option>
               <option>Spain</option>
-              <option>Canada</option>
+              <option>Belgium</option>
+              <option>Switzerland</option>
+              <option>Austria</option>
+              <option>Sweden</option>
+              <option>Norway</option>
+              <option>Denmark</option>
+              <option>Finland</option>
+              <option>Poland</option>
+              <option>Portugal</option>
+              <option>Czech Republic</option>
+              <option>Romania</option>
+              <option>Greece</option>
+              <option>Hungary</option>
+              <option>Ireland</option>
+              </optgroup>
+              <optgroup label="Asia Pacific">
               <option>Australia</option>
               <option>India</option>
+              <option>China</option>
+              <option>Japan</option>
+              <option>South Korea</option>
+              <option>Singapore</option>
+              <option>New Zealand</option>
+              <option>Indonesia</option>
+              <option>Philippines</option>
+              <option>Thailand</option>
+              <option>Malaysia</option>
+              <option>Vietnam</option>
+              </optgroup>
+              <optgroup label="Latin America">
               <option>Brazil</option>
+              <option>Argentina</option>
+              <option>Colombia</option>
+              <option>Chile</option>
+              <option>Peru</option>
+              </optgroup>
+              <optgroup label="Africa">
+              <option>South Africa</option>
+              <option>Nigeria</option>
+              <option>Kenya</option>
+              <option>Ethiopia</option>
+              <option>Morocco</option>
+              </optgroup>
               <option>Other</option>
             </select>
           </div>
