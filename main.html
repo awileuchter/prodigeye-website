@@ -105,6 +105,19 @@
       transition: var(--transition);
     }
 
+    .nav-links a.nav-waitlist {
+      color: var(--primary);
+      font-weight: 700;
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      padding: 5px 14px;
+      transition: var(--transition);
+    }
+    .nav-links a.nav-waitlist:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .nav-links a.nav-waitlist::before { display: none; }
     .nav-links a::before {
       content: '';
       position: absolute;
@@ -244,6 +257,7 @@
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
+      scroll-margin-top: 150px;
     }
 
     h2 {
@@ -631,9 +645,9 @@
       <a href="main.html">Home</a>
       <a href="main.html#about">About</a>
       <a href="technology.html">Technology</a>
-      <a href="waitlist.html">Waitlist</a>
       <a href="medical.html">Medical</a>
       <a href="main.html#team">Team</a>
+      <a href="waitlist.html" class="nav-waitlist">Waitlist</a>
       <a href="main.html#contact">Contact Us</a>
     </div>
   </div>
@@ -652,7 +666,7 @@
     </div>
   </header>
 
-  <section id="video">
+  <section id="video" style="scroll-margin-top: 150px;">
     <h2>Demo Video</h2>
     <div class="card reveal-on-scroll" style="text-align:center;">
       <div class="phone-video-container">
@@ -664,14 +678,14 @@
     </div>
   </section>
 
-  <section id="about">
+  <section id="about" style="scroll-margin-top: 150px;">
     <h2>About ProdigEye</h2>
     <div class="card reveal-on-scroll">
       <p>ProdigEye is a medical-grade AI diagnostic platform that enables non-specialist clinicians to accurately identify anterior segment eye diseases using only a standard smartphone camera. Designed for primary care, pediatrics, and emergency settings, ProdigEye delivers specialist-level diagnostic insight at the point of care, helping reduce misdiagnosis, unnecessary referrals, and delays in treatment where access to ophthalmologists and ocular equipment is limited.</p>
     </div>
   </section>
 
-  <section id="tech">
+  <section id="tech" style="scroll-margin-top: 150px;">
     <h2>Our Technology</h2>
     <div class="card reveal-on-scroll">
       <p>ProdigEye transforms a smartphone into a clinical eye diagnostic tool. Using AI-powered image analysis, the platform supports early and accurate identification of anterior segment eye conditions directly at the point of care. By reducing diagnostic uncertainty and unnecessary emergency room referrals, ProdigEye improves clinical confidence, lowers healthcare costs, and ensures patients receive timely, appropriate care, without requiring additional hardware or specialist training.</p>
@@ -683,7 +697,7 @@
     </div>
   </section>
 
-  <section id="team">
+  <section id="team" style="scroll-margin-top: 150px;">
     <h2>Our Team</h2>
     <div class="team-grid">
       <div class="team-member reveal-on-scroll">
@@ -718,7 +732,7 @@
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" style="scroll-margin-top: 150px;">
     <h2>Contact Us</h2>
     <div class="card reveal-on-scroll" style="max-width:620px; margin: 0 auto;">
 
