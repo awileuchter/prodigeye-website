@@ -22,7 +22,7 @@
     .nav-links a::before { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%) scaleX(0); width: 100%; height: 2px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; transition: transform 0.3s; }
     .nav-links a:hover { color: var(--primary); }
     .nav-links a:hover::before { transform: translateX(-50%) scaleX(1); }
-    .page-hero { margin-top: 121px; background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%); padding: 40px 40px 36px; min-height: 280px; max-height: 280px; display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; }
+    .page-hero { margin-top: 121px; background: linear-gradient(135deg, #d6e8fa 0%, #e8f2fd 100%); padding: 40px 40px 36px; min-height: 280px; display: flex; flex-direction: column; justify-content: center; text-align: center; position: relative; }
     .page-hero .eyebrow { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary); font-weight: 600; margin-bottom: 16px; display: block; }
     .page-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: #0a1628; letter-spacing: -0.025em; margin-bottom: 10px; }
     .page-hero p { font-size: 1rem; color: #3a5a80; max-width: 500px; margin: 0 auto; }
@@ -80,6 +80,7 @@
       <a href="main.html">Home</a>
       <a href="main.html#about">About</a>
       <a href="technology.html">Technology</a>
+      <a href="waitlist.html" onclick="this.closest('.nav-links').classList.remove('active')">Waitlist</a>
       <a href="medical.html">Medical</a>
       <a href="main.html#team">Team</a>
       <a href="main.html#contact">Contact Us</a>
