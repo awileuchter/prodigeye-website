@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ProdigEye — Under Construction</title>
+  <title>ProdigEye — Reimagining eye diagnostics with AI</title>
   <style>
     * {
       box-sizing: border-box;
@@ -39,6 +39,41 @@
       margin-bottom: 24px;
       color: #30416c;
       line-height: 1.6;
+    }
+
+    .panel .tagline {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #102748;
+      margin-bottom: 12px;
+    }
+
+    .panel .soon {
+      margin-bottom: 20px;
+    }
+
+    .contact {
+      margin: 0 0 28px;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f3f7ff;
+      color: #30416c;
+      line-height: 1.7;
+    }
+
+    .contact-title {
+      font-weight: 700;
+      color: #102748;
+    }
+
+    .contact a {
+      color: #0b4cc9;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
     }
 
     .field {
@@ -105,7 +140,16 @@
 </head>
 <body>
   <main class="panel" role="main">
-    <h1>ProdigEye is under construction</h1>
+    <h1>ProdigEye</h1>
+    <p class="tagline">Reimagining eye diagnostics with AI, on the smartphone, at the point of care</p>
+    <p class="soon">More coming soon.</p>
+
+    <div class="contact">
+      <div class="contact-title">Investor &amp; strategic inquiries</div>
+      <div>Oren Gershtein | CEO</div>
+      <div>Email | <a href="mailto:oren@prodigeye.com">oren@prodigeye.com</a></div>
+    </div>
+
     <p>Enter the access password to continue to the main site.</p>
 
     <form id="auth-form" autocomplete="off">
@@ -117,7 +161,6 @@
       <div id="message" class="message" aria-live="polite"></div>
     </form>
 
-    <p class="note">Only the correct password will redirect to the website.</p>
   </main>
 
   <script>
